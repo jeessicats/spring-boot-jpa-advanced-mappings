@@ -55,10 +55,13 @@ public class AppDAOImpl implements AppDAO {
         // retrieve the instructor detail using the primary key
         InstructorDetail tempInstructorDetail = entityManager.find(InstructorDetail.class, theId);
 
-        // remove the associated object reference
+        // get the courses
+        List<Course> courses = tempInstructorDetail.getInstructor().getCourses();
 
-        // break the bi-directional link
-        tempInstructorDetail.getInstructor().setInstructorDetail(null);
+        // break association of all courses with this instructor
+        for (Course course : courses) {
+            course.setInstructor(null);
+        }
 
         // delete the instructor detail
         entityManager.remove(tempInstructorDetail);

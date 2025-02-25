@@ -41,7 +41,9 @@ public class CruddemoApplication {
 
 			// updateInstructor(appDAO);
 
-			updateCourse(appDAO);
+			// updateCourse(appDAO);
+
+			deleteInstructorDetail(appDAO);
 
 		};
 	}
@@ -169,11 +171,11 @@ public class CruddemoApplication {
 	}
 
 	private void deleteInstructorDetail(AppDAO appDAO) {
-		int theId = 3;
+		int theId = 1;
 
 		System.out.println("Deleting instructor detail with id: " + theId);
 
-		appDAO.deleteInstructorDetailById(theId);
+		appDAO.deleteInstructorById(theId);
 
 		System.out.println("Done!");
 	}
