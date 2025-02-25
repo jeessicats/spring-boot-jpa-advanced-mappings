@@ -1,6 +1,7 @@
 package com.jeessicats.cruddemo;
 
 import com.jeessicats.cruddemo.dao.AppDAO;
+import com.jeessicats.cruddemo.entity.Course;
 import com.jeessicats.cruddemo.entity.Instructor;
 import com.jeessicats.cruddemo.entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
@@ -26,8 +27,59 @@ public class CruddemoApplication {
 			
 			// findInstructorDetail(appDAO);
 
-			deleteInstructorDetail(appDAO);
+			// deleteInstructorDetail(appDAO);
+
+			// createInstructorWithCourses(appDAO);
+
+			findInstructorWithCourses(appDAO);
 		};
+	}
+
+	private void findInstructorWithCourses(AppDAO appDAO) {
+		// get the instructor
+
+		int theId = 1;
+
+		System.out.println("Finding instructor with id: " + theId);
+
+		Instructor tempInstructor = appDAO.findInstructorById(theId);
+
+		System.out.println("Found instructor: " + tempInstructor);
+		System.out.println("The courses: " + tempInstructor.getCourses());
+
+		System.out.println("Done!");
+	}
+
+	private void createInstructorWithCourses(AppDAO appDAO) {
+		// create the instructor
+		Instructor tempInstructor = new Instructor("Catarina", "Breeze", "breeze@example.com");
+
+		// create the instructor detail
+		InstructorDetail tempInstructorDetail = new InstructorDetail("https://www.youtube.com/breeze", "Singing");
+
+		// associate the instructor with the instructor detail
+		tempInstructor.setInstructorDetail(tempInstructorDetail);
+
+		// create some courses
+		Course singing = new Course("Singing - The Basics with Catarina Breeze");
+		Course singingAdvanced = new Course("Singing - Advanced Techniques with Catarina Breeze");
+		Course singingMaster = new Course("Singing - Master Class with Catarina Breeze");
+
+		// add courses to instructor
+		tempInstructor.add(singing);
+		tempInstructor.add(singingAdvanced);
+		tempInstructor.add(singingMaster);
+
+		// save the instructor
+
+		// NOTE: this will also save the courses because of CascadeType.PERSIST
+
+		System.out.println("Saving instructor: " + tempInstructor);
+		System.out.println("The courses: " + tempInstructor.getCourses());
+		appDAO.save(tempInstructor);
+
+		System.out.println("Done!");
+
 	}
 
 	private void deleteInstructorDetail(AppDAO appDAO) {
