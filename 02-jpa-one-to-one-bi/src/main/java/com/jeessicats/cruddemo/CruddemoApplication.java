@@ -31,7 +31,7 @@ public class CruddemoApplication {
 	}
 
 	private void deleteInstructorDetail(AppDAO appDAO) {
-		int theId = 2;
+		int theId = 3;
 
 		System.out.println("Deleting instructor detail with id: " + theId);
 
@@ -87,10 +87,10 @@ public class CruddemoApplication {
 		 */
 
 		// create the instructor
-		Instructor tempInstructor = new Instructor("Oliver", "Potter", "olivia@example.com");
+		Instructor tempInstructor = new Instructor("John", "Olivander", "olivander@example.com");
 
 		// create the instructor detail
-		InstructorDetail tempInstructorDetail = new InstructorDetail("https://www.youtube.com/Oliver", "Writing");
+		InstructorDetail tempInstructorDetail = new InstructorDetail("https://www.youtube.com/olivander", "Writing");
 
 
 		// associate the instructor with the instructor detail
