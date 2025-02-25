@@ -30,7 +30,7 @@ public class Instructor {
     @JoinColumn(name="instructor_detail_id")
     private InstructorDetail instructorDetail;
 
-    @OneToMany(mappedBy="instructor", fetch = FetchType.EAGER, cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @OneToMany(mappedBy="instructor", fetch = FetchType.LAZY, cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     private List<Course> courses;
 
     // annotate the fields with db column names

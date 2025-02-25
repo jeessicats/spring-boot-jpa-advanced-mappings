@@ -1,7 +1,10 @@
 package com.jeessicats.cruddemo.dao;
 
+import com.jeessicats.cruddemo.entity.Course;
 import com.jeessicats.cruddemo.entity.Instructor;
 import com.jeessicats.cruddemo.entity.InstructorDetail;
+
+import java.util.List;
 
 public interface AppDAO {
     void save(Instructor theInstructor);
@@ -13,4 +16,6 @@ public interface AppDAO {
     InstructorDetail findInstructorDetailById(int theId);
 
     void deleteInstructorDetailById(int theId);
+
+    List<Course> findCoursesByInstructorId(int theId);
 }
