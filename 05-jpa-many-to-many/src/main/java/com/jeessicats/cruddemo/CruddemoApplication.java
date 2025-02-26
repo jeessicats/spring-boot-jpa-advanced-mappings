@@ -4,6 +4,7 @@ import com.jeessicats.cruddemo.dao.AppDAO;
 import com.jeessicats.cruddemo.entity.Course;
 import com.jeessicats.cruddemo.entity.Instructor;
 import com.jeessicats.cruddemo.entity.InstructorDetail;
+import com.jeessicats.cruddemo.entity.Student;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,8 +23,45 @@ public class CruddemoApplication {
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
 
+			// createCourseAndStudents(appDAO);
 
+			findCourseAndStudents(appDAO);
 		};
+	}
+
+	private void findCourseAndStudents(AppDAO appDAO) {
+		// get the course and students
+		int theId = 10;
+		Course tempCourse = appDAO.findCourseAndStudentsByCourseId(theId);
+
+		// print the course and students
+		System.out.println("Course: " + tempCourse);
+		System.out.println("Students: " + tempCourse.getStudents());
+
+		System.out.println("Done!");
+	}
+
+	private void createCourseAndStudents(AppDAO appDAO) {
+		// create a course
+		Course tempCourse = new Course("Painting - Aquarelle painting for beginners");
+
+		// create students
+		Student olivia = new Student("Olivia", "Willow", "willow@example.com");
+		Student john = new Student("John", "Mapple", "mapple@example.com");
+		Student mary = new Student("Mary", "Poppins", "poppins@example.com");
+
+		// add students to course
+		tempCourse.addStudent(olivia);
+		tempCourse.addStudent(john);
+		tempCourse.addStudent(mary);
+
+		// save the course and associate the students
+		System.out.println("Saving course: " + tempCourse);
+		System.out.println("The students: " + tempCourse.getStudents());
+		appDAO.save(tempCourse);
+
+		System.out.println("Done!");
+
 	}
 
 	private void deleteCourseAndReviews(AppDAO appDAO) {
