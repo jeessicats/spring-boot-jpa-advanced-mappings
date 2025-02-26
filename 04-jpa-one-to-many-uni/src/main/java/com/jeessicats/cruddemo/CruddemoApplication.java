@@ -24,8 +24,33 @@ public class CruddemoApplication {
 
 			// createCourseAndReviews(appDAO);
 
+			// retrieveCourseAndReviews(appDAO);
 
+			deleteCourseAndReviews(appDAO);
 		};
+	}
+
+	private void deleteCourseAndReviews(AppDAO appDAO) {
+		int theId = 10;
+
+		System.out.println("Deleting course with id: " + theId);
+
+		appDAO.deleteCourseById(theId);
+
+		System.out.println("Done!");
+	}
+
+	private void retrieveCourseAndReviews(AppDAO appDAO) {
+
+		// get the course and reviews
+		int theId = 10;
+		Course tempCourse = appDAO.findCourseAndReviewsByCourseId(theId);
+
+		// print the course and reviews
+		System.out.println("Course: " + tempCourse);
+		System.out.println("Reviews: " + tempCourse.getReviews());
+
+		System.out.println("Done!");
 	}
 
 	private void createCourseAndReviews(AppDAO appDAO) {
