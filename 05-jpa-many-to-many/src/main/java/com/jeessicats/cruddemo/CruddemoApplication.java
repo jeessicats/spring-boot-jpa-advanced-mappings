@@ -27,8 +27,35 @@ public class CruddemoApplication {
 
 			// findCourseAndStudents(appDAO);
 
-			findStudentAndCourses(appDAO);
+			// findStudentAndCourses(appDAO);
+
+			// addMoreCoursesForStudent(appDAO);
+
+			deleteCourse(appDAO);
 		};
+	}
+
+	private void addMoreCoursesForStudent(AppDAO appDAO) {
+		int theId = 2;
+
+		Student tempStudent = appDAO.findStudentAndCoursesByStudentId(theId);
+
+		// create more courses
+
+		Course course1 = new Course("Creative Writing - Novel Writing");
+		Course course2 = new Course("Content Writing - Writing for the Web");
+
+		// add courses to student
+		tempStudent.addCourse(course1);
+		tempStudent.addCourse(course2);
+
+		// save the courses
+		System.out.println("Updating courses: " + tempStudent.getCourses());
+		System.out.println("The student: " + tempStudent);
+
+		appDAO.updateStudent(tempStudent);
+
+		System.out.println("Done!");
 	}
 
 	private void findStudentAndCourses(AppDAO appDAO) {
